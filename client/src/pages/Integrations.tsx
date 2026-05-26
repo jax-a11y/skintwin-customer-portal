@@ -24,6 +24,7 @@ import {
   TabsTrigger,
 } from "@/components/ui/tabs";
 import { toast } from "sonner";
+import { SHOPIFY_APP_MODULES } from "@shared/shopifyAppProfile";
 
 const navItems = [
   { label: "Dashboard", href: "/dashboard", icon: <Settings className="h-4 w-4" /> },
@@ -44,7 +45,7 @@ const integrations: Integration[] = [
   {
     id: 'shopify',
     name: 'Shopify',
-    description: 'E-commerce platform for products and orders',
+    description: 'Core app platform for B2B PRM and B2B2C CRM commerce data',
     icon: <ShoppingBag className="h-6 w-6" />,
     category: 'ecommerce',
     status: 'disconnected',
@@ -209,8 +210,25 @@ export default function Integrations() {
       <div className="space-y-6">
         <div>
           <h1 className="text-2xl font-bold">Integrations</h1>
-          <p className="text-muted-foreground">Connect your external services and platforms</p>
+          <p className="text-muted-foreground">Configure your Shopify app core and connected external services</p>
         </div>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Integrated Modules</CardTitle>
+            <CardDescription>Built-in relationship capabilities delivered inside the Shopify app</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="grid md:grid-cols-2 gap-4">
+              {SHOPIFY_APP_MODULES.map((module) => (
+                <div key={module.id} className="rounded-lg border p-4">
+                  <p className="font-semibold">{module.title}</p>
+                  <p className="text-sm text-muted-foreground">{module.description}</p>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
 
         <Tabs defaultValue="all">
           <TabsList className="mb-4">

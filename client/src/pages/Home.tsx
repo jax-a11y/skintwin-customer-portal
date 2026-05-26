@@ -2,6 +2,7 @@ import { useAuth } from "@/_core/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { getLoginUrl } from "@/const";
+import { SHOPIFY_APP_MODULES } from "@shared/shopifyAppProfile";
 import { 
   Sparkles, 
   Users, 
@@ -21,18 +22,18 @@ export default function Home() {
   const features = [
     {
       icon: Users,
-      title: "Customer Management",
-      description: "Assign therapists to customers, track consultations, and manage ongoing care relationships."
+      title: "B2B2C CRM",
+      description: "Track end-customer journeys across Shopify storefront, bookings, orders, and consultation history."
     },
     {
       icon: Calendar,
-      title: "Booking Integration",
-      description: "Seamless Wix Bookings integration for B2B salon appointments and scheduling."
+      title: "B2B PRM",
+      description: "Coordinate partner salons with shared schedules, onboarding workflows, and operational visibility."
     },
     {
       icon: ShoppingBag,
-      title: "E-Commerce & POS",
-      description: "Unified Shopify and OpenCart integration for online and in-store sales."
+      title: "Shopify Commerce Core",
+      description: "Sync products, orders, and customers directly from Shopify for online and in-store operations."
     },
     {
       icon: BarChart3,
@@ -46,8 +47,8 @@ export default function Home() {
     },
     {
       icon: Sparkles,
-      title: "Accounting Integration",
-      description: "Sync with QuickBooks, Xero, and GnuCash for seamless financial management."
+      title: "Shopify-Centric Operations",
+      description: "Run product, order, and customer lifecycle workflows from your Shopify app command center."
     }
   ];
 
@@ -89,11 +90,10 @@ export default function Home() {
       <section className="py-20 px-4">
         <div className="container text-center max-w-4xl">
           <h1 className="text-5xl font-bold tracking-tight mb-6 bg-gradient-to-r from-rose-600 to-amber-600 bg-clip-text text-transparent">
-            Beauty Business Management Platform
+            Shopify App for B2B PRM + B2B2C CRM
           </h1>
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Unify your beauty business operations with integrated e-commerce, bookings, payments, 
-            and therapist management in one powerful platform.
+            Manage partner relationships and end-customer journeys in one Shopify-native workspace for B2B and B2B2C growth.
           </p>
           <div className="flex gap-4 justify-center">
             {isAuthenticated ? (
@@ -140,6 +140,15 @@ export default function Home() {
       {/* User Roles Section */}
       <section className="py-16 px-4">
         <div className="container max-w-4xl">
+          <h2 className="text-3xl font-bold text-center mb-12">Integrated Relationship Modules</h2>
+          <div className="grid md:grid-cols-2 gap-6 mb-6">
+            {SHOPIFY_APP_MODULES.map((module) => (
+              <div key={module.id} className="rounded-xl border bg-white p-6 shadow-sm">
+                <h3 className="font-semibold text-lg mb-2">{module.title}</h3>
+                <p className="text-muted-foreground">{module.description}</p>
+              </div>
+            ))}
+          </div>
           <h2 className="text-3xl font-bold text-center mb-12">Built for Everyone</h2>
           <div className="grid md:grid-cols-2 gap-6">
             {userRoles.map((item, index) => (
@@ -160,7 +169,7 @@ export default function Home() {
         <div className="container text-center">
           <h2 className="text-3xl font-bold mb-4">Powerful Integrations</h2>
           <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Connect with the tools you already use. Shopify, Stripe, PayStack, Wix, QuickBooks, Xero, and ERPNext.
+            Built as a Shopify app first, with optional integrations for payments, finance, procurement, and enterprise identity.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             {['Shopify', 'Stripe', 'PayStack', 'Wix', 'QuickBooks', 'Xero', 'ERPNext', 'WorkOS'].map((integration) => (
