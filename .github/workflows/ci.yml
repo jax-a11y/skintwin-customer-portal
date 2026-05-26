@@ -93,7 +93,7 @@ jobs:
         run: corepack pnpm exec playwright install-deps chromium
 
       - name: Download build artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v4.1.8
         with:
           name: build-output
           path: dist/
@@ -166,7 +166,7 @@ jobs:
         run: corepack pnpm exec playwright install-deps
 
       - name: Download build artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v4.1.8
         with:
           name: build-output
           path: dist/
@@ -217,7 +217,7 @@ jobs:
         run: corepack pnpm install --frozen-lockfile
 
       - name: Download all test results
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v4.1.8
         with:
           pattern: test-results-*
           path: all-test-results/
