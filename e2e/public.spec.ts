@@ -11,11 +11,11 @@ test.describe("Public Pages @smoke @public", () => {
 
     // Verify main hero content
     await expect(page.locator("h1")).toBeVisible();
-    await expect(page.getByText("SkinTwin")).toBeVisible();
+    await expect(page.getByText("SkinTwin").first()).toBeVisible();
 
     // Verify sign-in CTA is visible
     await expect(
-      page.getByRole("link", { name: /sign in|get started/i })
+      page.getByRole("link", { name: /sign in|get started/i }).first()
     ).toBeVisible();
   });
 
@@ -23,9 +23,9 @@ test.describe("Public Pages @smoke @public", () => {
     await page.goto("/");
 
     // Verify key feature sections are present
-    await expect(page.getByText(/B2B2C CRM/i)).toBeVisible();
-    await expect(page.getByText(/B2B PRM/i)).toBeVisible();
-    await expect(page.getByText(/Shopify/i)).toBeVisible();
+    await expect(page.getByText(/B2B2C CRM/i).first()).toBeVisible();
+    await expect(page.getByText(/B2B PRM/i).first()).toBeVisible();
+    await expect(page.getByText(/Shopify/i).first()).toBeVisible();
   });
 
   test("home page has correct navigation elements", async ({ page }) => {
@@ -39,7 +39,7 @@ test.describe("Public Pages @smoke @public", () => {
     await page.goto("/unknown-route-that-does-not-exist");
 
     // Verify 404 content
-    await expect(page.getByText(/not found|404/i)).toBeVisible();
+    await expect(page.getByText(/not found|404/i).first()).toBeVisible();
   });
 
   test("home page has no console errors", async ({ page }) => {
