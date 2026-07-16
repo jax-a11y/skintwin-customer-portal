@@ -61,12 +61,12 @@ test.describe("Route Accessibility @smoke", () => {
   test("404 route is accessible", async ({ page }) => {
     const response = await page.goto("/404");
     expect(response?.status()).toBe(200);
-    await expect(page.getByText(/not found|404/i)).toBeVisible();
+    await expect(page.getByText(/not found|404/i).first()).toBeVisible();
   });
 
   test("unknown routes show 404 page", async ({ page }) => {
     await page.goto("/this-route-definitely-does-not-exist");
-    await expect(page.getByText(/not found|404/i)).toBeVisible();
+    await expect(page.getByText(/not found|404/i).first()).toBeVisible();
   });
 });
 

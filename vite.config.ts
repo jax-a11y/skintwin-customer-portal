@@ -3,11 +3,31 @@ import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
 import fs from "node:fs";
 import path from "path";
-import { defineConfig } from "vite";
+import { defineConfig, type Plugin } from "vite";
 import { vitePluginManusRuntime } from "vite-plugin-manus-runtime";
 
+/**
+ * Drops the analytics <script> tag from index.html when
+ * VITE_ANALYTICS_ENDPOINT is not configured. Without this, Vite leaves the
+ * literal "%VITE_ANALYTICS_ENDPOINT%" placeholder in the built HTML, and the
+ * browser requests /%VITE_ANALYTICS_ENDPOINT%/umami, producing console errors
+ * on every page load.
+ */
+function optionalAnalyticsPlugin(): Plugin {
+  let analyticsConfigured = false;
+  return {
+    name: "optional-analytics",
+    configResolved(config) {
+      analyticsConfigured = Boolean(config.env.VITE_ANALYTICS_ENDPOINT);
+    },
+    transformIndexHtml(html) {
+      if (analyticsConfigured) return html;
+      return html.replace(/<script[^>]*%VITE_ANALYTICS_ENDPOINT%[^>]*>\s*<\/script>/g, "");
+    },
+  };
+}
 
-const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime()];
+const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime(), optionalAnalyticsPlugin()];
 
 export default defineConfig({
   plugins,

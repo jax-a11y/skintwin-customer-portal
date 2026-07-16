@@ -1,0 +1,39 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jax-a11y/skintwin-ecosystem-design/main/schemas/ecosystem-manifest.schema.json",
+  "manifestVersion": "1.0",
+  "github": "jax-a11y/skintwin-customer-portal",
+  "layer": "business-apps",
+  "role": "customer-org-service",
+  "description": "Multi-tenant B2B/B2B2C portal (React 19 + tRPC + Drizzle): four roles, consultations, bookings, orders, payments, commissions. Plays the Customer & Org Service role (users, orgs, tenants, auth).",
+  "designAlias": "skintwin-customer-portal (Customer & Org Service)",
+  "gatewayPrefix": "/api/users/*",
+  "provides": [
+    "user-api"
+  ],
+  "consumes": [
+    "cognitive-api",
+    "integration-api",
+    "lms-api"
+  ],
+  "events": {
+    "publishes": [
+      "user.created"
+    ],
+    "subscribes": [
+      "order.placed",
+      "order.created",
+      "course.completed",
+      "certification.awarded",
+      "appointment.created",
+      "appointment.updated",
+      "order.paid"
+    ]
+  },
+  "ci": {
+    "workflows": [
+      "ci.yml (pnpm, tsc, vitest, build, e2e)"
+    ],
+    "usesReusable": false
+  },
+  "registry": "https://github.com/jax-a11y/skintwin-ecosystem-design/blob/main/registry/ecosystem.json"
+}

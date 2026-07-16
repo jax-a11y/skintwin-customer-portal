@@ -47,6 +47,13 @@ jobs:
 
       - name: Build
         run: corepack pnpm run build
+        env:
+          # Vite envs are baked into the client bundle at build time (the
+          # values set on the e2e run steps are too late). Without
+          # VITE_OAUTH_PORTAL_URL the client crashes at render with
+          # "TypeError: Failed to construct 'URL'" in getLoginUrl().
+          VITE_APP_ID: "test-app-id"
+          VITE_OAUTH_PORTAL_URL: "http://localhost:3000"
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4

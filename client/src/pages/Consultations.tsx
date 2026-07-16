@@ -51,16 +51,16 @@ export default function Consultations() {
               </DialogHeader>
               <div className="grid gap-4 py-4">
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="grid gap-2"><Label>Customer</Label><Input placeholder="Select customer" /></div>
-                  <div className="grid gap-2"><Label>Consultation Type</Label><Input placeholder="Initial Assessment" /></div>
+                  <div className="grid gap-2"><Label htmlFor="consultation-customer">Customer</Label><Input id="consultation-customer" placeholder="Select customer" /></div>
+                  <div className="grid gap-2"><Label htmlFor="consultation-type">Consultation Type</Label><Input id="consultation-type" placeholder="Initial Assessment" /></div>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="grid gap-2"><Label>Skin Type</Label><Input placeholder="e.g., Combination, Oily, Dry" /></div>
-                  <div className="grid gap-2"><Label>Date</Label><Input type="date" /></div>
+                  <div className="grid gap-2"><Label htmlFor="consultation-skin-type">Skin Type</Label><Input id="consultation-skin-type" placeholder="e.g., Combination, Oily, Dry" /></div>
+                  <div className="grid gap-2"><Label htmlFor="consultation-date">Date</Label><Input id="consultation-date" type="date" /></div>
                 </div>
-                <div className="grid gap-2"><Label>Skin Concerns</Label><Input placeholder="e.g., Acne, Hyperpigmentation, Fine lines" /></div>
-                <div className="grid gap-2"><Label>Notes</Label><Textarea placeholder="Detailed consultation notes..." rows={4} /></div>
-                <div className="grid gap-2"><Label>Recommendations</Label><Textarea placeholder="Product and treatment recommendations..." rows={3} /></div>
+                <div className="grid gap-2"><Label htmlFor="consultation-concerns">Skin Concerns</Label><Input id="consultation-concerns" placeholder="e.g., Acne, Hyperpigmentation, Fine lines" /></div>
+                <div className="grid gap-2"><Label htmlFor="consultation-notes">Notes</Label><Textarea id="consultation-notes" placeholder="Detailed consultation notes..." rows={4} /></div>
+                <div className="grid gap-2"><Label htmlFor="consultation-recommendations">Recommendations</Label><Textarea id="consultation-recommendations" placeholder="Product and treatment recommendations..." rows={3} /></div>
               </div>
               <DialogFooter>
                 <Button variant="outline" onClick={() => setIsAddDialogOpen(false)}>Cancel</Button>
